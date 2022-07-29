@@ -1,10 +1,16 @@
 package ru.netology.std;
 
 public class Radio {
-    public int currentVolume;
+    private int currentVolume;
+    private int currentStation;
+
+    public Radio() {
+        this.currentVolume = 0;
+        this.currentStation = 0;
+    }
 
     public int getCurrentVolume() {
-        return currentVolume;
+        return this.currentVolume;
     }
 
     public void setCurrentVolume(int newCurrentVolume) {
@@ -14,55 +20,47 @@ public class Radio {
         if (newCurrentVolume > 10) {
             return;
         }
-        currentVolume = newCurrentVolume;
+        this.currentVolume = newCurrentVolume;
     }
 
     public void increasedVolume() {
-        int volume = currentVolume + 1;
-        setCurrentVolume(volume);
+        int volume = this.currentVolume + 1;
+        this.setCurrentVolume(volume);
     }
 
     public void reduceVolume() {
-        int volume = currentVolume - 1;
-        setCurrentVolume(volume);
-    }
-
-    //  public int currentStation;
-
-  /*  public int getCurrentStation() {
-        return currentStation;
+        int volume = this.currentVolume - 1;
+        this.setCurrentVolume(volume);
     }
 
 
+    public int getCurrentStation() {
+        return this.currentStation;
+    }
 
-    public void setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation > 9) {
+    public void setCurrentStation(int newStation) {
+        if (newStation > 9) {
             return;
         }
-        if (newCurrentStation < 0) {
+        if (newStation < 0) {
             return;
         }
-        currentStation = newCurrentStation;
+        this.currentStation = newStation;
     }
 
-   */
-
-
-    public int next(int currentStation) {
-        if (currentStation < 9) {
-            currentStation++;
+    public void next() {
+        if (this.currentStation < 9) {
+            this.currentStation++;
         } else {
-            currentStation = 0;
+            this.currentStation = 0;
         }
-        return currentStation;
     }
 
-    public int prev(int currentStation) {
-        if (currentStation > 0) {
-            currentStation--;
+    public void prev() {
+        if (this.currentStation > 0) {
+            this.currentStation--;
         } else {
-            currentStation = 9;
+            this.currentStation = 9;
         }
-        return currentStation;
     }
 }

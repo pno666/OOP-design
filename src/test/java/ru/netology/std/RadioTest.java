@@ -28,9 +28,11 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/next.csv")
-    public void shoulNextStation(int curst, int exp) {
+    public void shouldNextStation(int curst, int exp) {
         Radio station = new Radio();
-        int act = station.next(curst);
+        station.setCurrentStation(curst);
+        station.next();
+        int act = station.getCurrentStation();
         Assertions.assertEquals(exp, act);
     }
 
@@ -38,7 +40,18 @@ public class RadioTest {
     @CsvFileSource(resources = "/prev.csv")
     public void shouldPrevStation(int curst, int exp) {
         Radio station = new Radio();
-        int act = station.prev(curst);
+        station.setCurrentStation(curst);
+        station.prev();
+        int act = station.getCurrentStation();
+        Assertions.assertEquals(exp, act);
+    }
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/station.csv")
+    public void shouldUseStation(int st, int exp) {
+        Radio station = new Radio();
+        station.setCurrentStation(st);
+        int act = station.getCurrentStation();
         Assertions.assertEquals(exp, act);
     }
 }
