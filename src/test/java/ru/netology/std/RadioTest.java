@@ -28,8 +28,8 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/next.csv")
-    public void shouldNextStation(int curst, int exp) {
-        Radio station = new Radio();
+    public void shouldNextStation(int curst, int exp, int sumStation) {
+        Radio station = new Radio(sumStation);
         station.setCurrentStation(curst);
         station.next();
         int act = station.getCurrentStation();
@@ -38,8 +38,8 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/prev.csv")
-    public void shouldPrevStation(int curst, int exp) {
-        Radio station = new Radio();
+    public void shouldPrevStation(int curst, int exp, int sumStation) {
+        Radio station = new Radio(sumStation);
         station.setCurrentStation(curst);
         station.prev();
         int act = station.getCurrentStation();
@@ -48,9 +48,17 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = "/station.csv")
-    public void shouldUseStation(int st, int exp) {
-        Radio station = new Radio();
+    public void shouldUseStation(int st, int exp, int sumStation) {
+        Radio station = new Radio(sumStation);
         station.setCurrentStation(st);
+        int act = station.getCurrentStation();
+        Assertions.assertEquals(exp, act);
+    }
+    @Test
+    public void shouldUseStationWhithoutCurStation() {
+        Radio station = new Radio();
+        station.setCurrentStation(5);
+        int exp = 5;
         int act = station.getCurrentStation();
         Assertions.assertEquals(exp, act);
     }
